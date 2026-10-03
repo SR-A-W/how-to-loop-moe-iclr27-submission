@@ -1,0 +1,50 @@
+# Training environment: tokenization and pretraining.
+#
+# Pins are the versions of the environment used for the paper (direct
+# dependencies only; pip resolves the rest). Installing this file in a fresh
+# virtual environment was verified end to end. Keep it separate from the
+# evaluation environment (different torch and datasets versions).
+#
+# Install order (see README, Installation):
+#   python -m pip install pip==26.2.1
+#   pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cu126
+#   pip install --no-deps "torchtitan @ git+https://github.com/pytorch/torchtitan.git@73a0e6979dd10b6b1904098eb3c8f62c18ab87ce" megatron-core==0.16.1
+#   grep -vE '^(torchtitan|megatron-core)[ =@]' requirements-train.txt | pip install -r /dev/stdin
+#
+# The cu126 torch build is for drivers that do not support CUDA 13; otherwise
+# the default wheel works.
+
+torch==2.12.0
+# torchtitan: install with --no-deps. The model is registered from outside the
+# package (not a fork), so the pin is exact: a newer torchtitan may have changed
+# the extension API.
+torchtitan @ git+https://github.com/pytorch/torchtitan.git@73a0e6979dd10b6b1904098eb3c8f62c18ab87ce
+# torchtitan's own direct dependencies, listed because torchtitan itself is
+# installed with --no-deps:
+tyro==1.0.15
+torchdata==0.11.0
+datasets==3.6.0
+tokenizers==0.22.2
+tensorboard==2.21.0
+tomli==2.4.1
+
+transformers==5.15.0
+einops==0.8.2
+numpy==2.4.6
+safetensors==0.8.0
+
+# megatron-core: install with --no-deps. Used only to read and write the bin/idx
+# datasets; the full Megatron stack would pull in Transformer Engine / Apex,
+# which this code does not need. Importing it prints a harmless warning that
+# Transformer Engine and Apex are not installed.
+megatron-core==0.16.1
+
+pyarrow==21.0.0
+huggingface_hub==1.27.0
+
+# wandb: needed only when training is launched with --metrics.enable_wandb
+# (the generated launch commands pass it); unpinned.
+wandb
+
+# test-only
+pytest==9.1.1

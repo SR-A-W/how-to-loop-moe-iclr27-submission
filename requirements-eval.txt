@@ -1,0 +1,43 @@
+# Evaluation environment: downstream evaluation, held-out loss, routing probe,
+# expert masking, and building the held-out slices.
+#
+# Pins are the versions of the environment used for the paper; installing this
+# file in a fresh virtual environment was verified end to end. Keep it separate
+# from the training environment (different torch and datasets versions).
+#
+# Install order (see README, Installation):
+#   python -m pip install pip==26.2.1
+#   pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cu126
+#   pip install --no-deps megatron-core==0.16.1
+#   grep -vE '^megatron-core[ =]' requirements-eval.txt | pip install -r /dev/stdin
+#
+# torch==2.13.0: our evaluation environment used the cu130 build; the cu126
+# build (--index-url https://download.pytorch.org/whl/cu126) was also verified
+# end to end (install + GPU smoke on A100, driver CUDA 12.7). Use cu126 if your
+# driver does not support CUDA 13.
+#
+# Set HF_DATASETS_TRUST_REMOTE_CODE=1 when evaluating: several evaluation tasks
+# are script-based datasets.
+
+lm_eval[hf]==0.4.12
+
+# datasets 2.21.0: newer releases dropped support for script-based datasets,
+# which several evaluation tasks still need.
+datasets==2.21.0
+
+torch==2.13.0
+transformers==5.15.0
+einops==0.8.2
+
+# megatron-core: install with --no-deps (see the install order above). Used
+# only to read and write the bin/idx datasets (held-out loss via
+# `run_eval.py --val-tokenized-dir`, and the held-out slice builders).
+megatron-core==0.16.1
+
+# test-only
+pytest==9.1.1
+
+# Not listed on purpose: the dependencies of lm_eval[hf]==0.4.12 itself
+# (dill, evaluate, jinja2, more_itertools, pytablewriter, rouge-score,
+# sacrebleu, scikit-learn, sqlitedict, word2number, accelerate, peft); pip
+# resolves them from the lm_eval[hf] pin above.

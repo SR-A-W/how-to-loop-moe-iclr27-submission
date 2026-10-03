@@ -1,0 +1,22 @@
+# Fine-tuning probe environment.
+#
+# Pins are the versions of the environment used for the paper (direct
+# dependencies only; pip resolves the rest).
+#
+# Install order:
+#   python -m pip install pip==26.2.1
+#   pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cu126
+#   pip install -r requirements-posttrain.txt
+#
+# The cu126 torch build is for drivers that do not support CUDA 13; the same
+# wheel also works on newer drivers.
+
+trl==1.10.0
+transformers==5.15.0
+torch==2.13.0
+accelerate==1.14.0
+datasets==5.0.1
+einops==0.8.2
+
+# test-only
+pytest==9.1.1

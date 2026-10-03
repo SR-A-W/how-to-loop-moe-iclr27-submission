@@ -1,0 +1,10 @@
+{
+  "hf_repo": "HuggingFaceTB/SmolLM2-1.7B",
+  "revision": "effd688a12921b4cc83e3312b6feb579f70f9c71",
+  "fetched_at_utc": "2026-09-12",
+  "files_sha256": {
+    "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+    "tokenizer_config.json": "4bb9af56a342753d39374f4016a16574cab299fe088e896f425ce3c433f61424",
+    "special_tokens_map.json": "e786b595b9a23148bf1630df78d9037a048ea671e48bfd3549a1e3c233742bb3"
+  }
+}
