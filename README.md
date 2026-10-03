@@ -6,12 +6,14 @@
 
 ## Model weights
 
+## Model weights
 The weights of the models in the paper are available: the final checkpoints of
 the four 100B-token models (Foil-1, Foil-2, Foil-3 and Base) and the intermediate
-checkpoints of each run. To preserve anonymity during review, they are not
-linked here; they will be released publicly after the review period. Reviewers
-who would like the weights now can ask through OpenReview, and we will share
-them through an anonymous link.
+checkpoints of each run. To preserve anonymity, they are not linked from this
+repository during the review period; the link will be added after it. If reviewers
+would like access to the weights during review, they can raise the request through
+OpenReview with the Area Chair or the Program Chairs, and we will provide the
+weights anonymously through them.
 
 ## Code
 
