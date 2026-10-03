@@ -5,8 +5,6 @@
 `LoopMoE` is this repository's internal code name for the looped MoE models studied in the paper (Foil and its baselines). It is unrelated to the LoopMoE method proposed by Chen et al. (2026, arXiv:2606.04438). A later version will rename it to Foil in the code.
 
 ## Model weights
-
-## Model weights
 The weights of the models in the paper are available: the final checkpoints of
 the four 100B-token models (Foil-1, Foil-2, Foil-3 and Base) and the intermediate
 checkpoints of each run. To preserve anonymity, they are not linked from this
